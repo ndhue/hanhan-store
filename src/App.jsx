@@ -6,14 +6,14 @@ import {
 
 import { NavBar } from "./components/Navbar";
 import { Home } from "./pages/home/index";
-import { BottomNav } from "./components/BottomNav";
+import { Details } from "./pages/Details";
+import { ProductsBySearch } from "./pages/ProductsBySearch";
 
 const Layout = () => {
   return (
     <div className=" bg-slate-50">
       <NavBar />
       <Outlet />
-      <BottomNav/>
     </div>
   )
 };
@@ -24,6 +24,8 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "/", element: <Home /> },
+      { path: "/details/:id", element: <Details />},
+      { path: "/?searchKey=:id", element: <ProductsBySearch />}
     ]
   }
 ]);

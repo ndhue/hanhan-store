@@ -8,8 +8,13 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      const temp = { ...action.payload, qty: 1 };
-      state.carts.push(temp);
+      const itemIndex = state.carts.findIndex((item) => item.id === action.payload.id);
+      if (itemIndex >= 0) {
+        state.carts[itemIndex].qty += 1;
+      } else {
+        const temp = { ...action.payload, qty: 1 };
+        state.carts.push(temp);
+      }
       window.sessionStorage.setItem("carts", JSON.stringify(state.carts))
     },
     removeItem: (state, action) => {
@@ -27,8 +32,13 @@ const cartSlice = createSlice({
       window.sessionStorage.setItem("carts", JSON.stringify(state.carts))
     },
     updateItemQuantity: (state, action) => {
-      const itemIndex = state.carts.findIndex((item) => item.id === action.payload.id);
-      state.carts[itemIndex].qty += 1;
+      const itemIndex = state.carts.findIndex((item) => item.id === action.payload.item.id);
+      if (itemIndex >= 0) {
+        state.carts[itemIndex].qty += action.payload.quantity;
+      } else {
+        const temp = { ...action.payload.item, qty: action.payload.quantity };
+        state.carts.push(temp);
+      }
       window.sessionStorage.setItem("carts", JSON.stringify(state.carts))
     },
     deleteCart:(state, action)=> {
