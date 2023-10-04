@@ -4,7 +4,7 @@ export const BottomNav = () => {
 
   return (
     <div className='fixed bottom-0 inset-x-0'>
-      <div className="md:w-5/12 w-full mx-auto grid grid-cols-5 items-center text-center bg-white text-slate-600 md:text-sm text-[12px] rounded-t-md drop-shadow-md">
+      <div className="lg:w-5/12 w-full mx-auto grid grid-cols-5 items-center text-center bg-white text-slate-600 md:text-sm text-[12px] rounded-t-md drop-shadow-md">
         <Link to="#" className="cursor-pointer item py-2 px-0.5 hover:text-red-600 transition ease-in-out focus:text-red-600">
           <HomeIcon className="w-6 h-6 mx-auto" />
           <span>Trang chủ</span>
