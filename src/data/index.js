@@ -2,7 +2,7 @@ export const listItem = [
   {id: 1, name: "Mì Hảo Hảo", src: "", price: 3500, note:"-7.3%"},
   {id: 2, name: "Mì Indomie", src: "", price: 7000, type: "cookies"},
   {id: 3, name: "Mì 3 Miền", src: "", price: 4000, type: "cookies"},
-  {id: 4, name: "Mì Hảo Hảo 2", src: "", price: 3500, type: "cookies", note:"best-seller"},
+  {id: 4, name: "Mì Hảo Hảo 2", src: "", price: 3500},
   {id: 5, name: "Mì Indomie 2", src: "", price: 7000, type: "cookies", note:"-7.3%"},
   {id: 6, name: "Mì 3 Miền 2", src: "", price: 4000, type: "cookies"},
   {id: 7, name: "Mì Hảo Hảo 3", src: "", price: 3500, note:"-7.3%"},

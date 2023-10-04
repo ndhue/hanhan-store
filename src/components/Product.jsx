@@ -27,7 +27,7 @@ export const Product = (props) => {
 
   return (
     <div className="relative w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow text-gray-900">
-      {item.note && <p className="absolute top-[-2px] left-[-2px] text-slate-50 bg-red-600 p-1 text-sm font-bold rounded-br-md">
+      {item.note && <p className="absolute top-[-1px] left-[-1px] text-slate-50 bg-red-600 p-1 text-sm font-bold rounded-br-md rounded-tl-md">
         {item.note}
       </p>}
           <a href="#">
