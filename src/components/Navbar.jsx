@@ -1,4 +1,4 @@
-import { ShoppingCart } from "@mui/icons-material";
+import { ShoppingCartIcon} from "@heroicons/react/24/outline";
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon, TrashIcon } from '@heroicons/react/24/outline'
@@ -31,25 +31,25 @@ export const NavBar = () => {
 
   return (
 
-    <nav className="bg-[#921117] border-gray-200">
+    <nav className="fixed w-full top-0 bg-red-600 border-gray-200 z-40">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" className="flex items-center">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Hanhan</span>
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Bách Hóa Hân Hân</span>
         </a>
-        <div className="flex md:order-2 items-center">
-          <div className="relative">
+        <div className="sm:pt-0 pt-2 flex md:order-2 items-center">
+          <div className="flex-auto w-90 relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg className="w-3 h-3 text-grey" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
               </svg>
               <span className="sr-only">Search icon</span>
             </div>
-            <input type="text" id="search-navbar" className="block w-full py-2 px-8 mr-10 text-sm text-slate-700 border border-gray-300 rounded-full bg-gray-50" placeholder="Xin chào, bạn muốn tìm gì hôm nay?" />
+            <input type="text" id="search-navbar" className="block w-full py-2 px-10 mr-16 text-[12px] text-slate-700 border border-gray-300 rounded-full bg-gray-50" placeholder="Xin chào, bạn muốn tìm gì hôm nay?" />
           </div>
-          <button className="cart relative" onClick={() => setOpen(true)}>
-            <ShoppingCart className="ml-2 w-6 h-6 text-white" />
+          <button className="flex-auto w-12 ml-auto cart relative" onClick={() => setOpen(true)}>
+            <ShoppingCartIcon className="ml-2 w-8 h-8 text-white" />
             {cart.length !== 0 && (
-              <span className="absolute right-0 top-0 rounded-full bg-red-600 w-4 h-4 p-0 m-[-6px] text-white font-mono text-sm leading-4 text-center">
+              <span className="absolute right-0 top-0 rounded-full bg-white border-red-700 border-2 w-5 h-5 p-0 m-[-2px] text-red-600 font-bold text-[10px] leading-5 text-center">
                 {cart.length}
               </span>
             )}
@@ -124,7 +124,7 @@ export const NavBar = () => {
                                       </div>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
-                                      <p className="text-gray-500">Số lượng {product.qty}</p>
+                                      <p className="text-gray-500">Số lượng: {product.qty}</p>
 
                                       <div className="flex">
                                         <button className="hover:text-red-900 duration-200 text-red-700" onClick={() => { deletes(product.id) }}>
@@ -152,19 +152,6 @@ export const NavBar = () => {
                           >
                             Thanh toán
                           </a>
-                        </div>
-                        <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                          <p>
-                            Hoặc
-                            <button
-                              type="button"
-                              className="font-medium text-indigo-600 hover:text-indigo-500"
-                              onClick={() => setOpen(false)}
-                            >
-                              Tiếp tục mua sắm
-                              <span aria-hidden="true"> &rarr;</span>
-                            </button>
-                          </p>
                         </div>
                       </div>
                     </div>

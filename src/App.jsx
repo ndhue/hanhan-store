@@ -6,13 +6,15 @@ import {
 
 import { NavBar } from "./components/Navbar";
 import { Home } from "./pages/home/index";
+import { BottomNav } from "./components/BottomNav";
 
 const Layout = () => {
   return (
-    <>
+    <div className=" bg-slate-50">
       <NavBar />
       <Outlet />
-    </>
+      <BottomNav/>
+    </div>
   )
 };
 

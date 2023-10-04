@@ -26,26 +26,29 @@ export const Product = (props) => {
   }
 
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow text-gray-900">
+    <div className="relative w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow text-gray-900">
+      {item.note && <p className="absolute top-[-2px] left-[-2px] text-slate-50 bg-red-600 p-1 text-sm font-bold rounded-br-md">
+        {item.note}
+      </p>}
           <a href="#">
-            <img className="p-8 rounded-t-lg" src="/haohao.png" alt="product image" />
+            <img className="sm:p-8 p-4 rounded-t-lg" src="/haohao.png" alt="product image" />
           </a>
-          <div className="px-5 pb-5">
+          <div className="sm:px-5 px-2 pb-5">
             <a href="#">
-              <p className="text-lg font-semibold text-gray-800 ">{item.name}</p>
+              <p className="text-lg font-semibold text-gray-800 ">{item.name.length > 20 ? item.name.slice(0, 20) + '...' : item.name}</p>
             </a>
             <div className="">
-              <p className="text-2xl tracking-wide font-bold text-rose-600">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)}</p>
+              <p className="sm:text-2xl text-lg tracking-wide font-bold text-red-600">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)}</p>
               {(cart.filter(p => p.id === item.id).length ==0) && 
-                <button onClick={() => addToCart(item)} className="w-full text-white bg-rose-600 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 transition ease-in-out font-medium rounded-full text-sm px-5 py-2.5 text-center">Thêm vào giỏ</button>}
+                <button onClick={() => addToCart(item)} className="w-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition ease-in-out font-medium rounded-full sm:text-sm text-[12px] sm:px-5 px-2 py-2.5 text-center">Thêm vào giỏ</button>}
                 {cart.filter(p => p.id === item.id).map(p => (
-                  <div className="flex justify-center items-center" key={p.id}>
+                  <div className="flex justify-center items-center mt-2" key={p.id}>
                     <button className="border border-slate-400 rounded-full hover:bg-slate-100 duration-200" onClick={p.qty <= 1 ? () => deletes(p.id) : () => decrement(p)}>
-                      <MinusIcon className="h-3 w-3 inline m-2" />
+                      <MinusIcon className="h-3 w-3 inline sn:m-2 m-1.5" />
                     </button>
-                    <span className="mx-6 text-center font-bold text-rose-600 bg-rose-100 rounded-full px-6 py-1"> {p.qty} </span>
+                    <span className="sm:mx-6 mx-2 text-center text-sm sm:text-base font-bold text-red-600 bg-rose-100 rounded-full sm:px-6 px-4 sm:py-1 py-1"> {p.qty} </span>
                     <button className="border border-gray-200 rounded-full bg-slate-400 hover:bg-slate-500 duration-200" onClick={() => increment(p)}>
-                      <PlusIcon className="h-3 w-3 inline m-2 text-slate-700" />
+                      <PlusIcon className="h-3 w-3 inline sn:m-2 m-1.5 text-slate-700" />
                     </button>
                   </div>
                 ))}
