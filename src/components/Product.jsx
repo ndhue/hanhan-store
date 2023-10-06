@@ -1,10 +1,7 @@
-import { Fragment, useState, useEffect } from 'react'
-import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 
 import { MinusIcon, PlusIcon, HeartIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { GiftIcon } from "@heroicons/react/24/solid";
@@ -63,8 +60,8 @@ export const Product = (props) => {
       {item.note && <p className="absolute top-[-1px] left-[-1px] text-slate-50 bg-red-600 py-1 px-2 text-xs font-semibold rounded-br-md rounded-tl-md">
         {item.note}
       </p>}
-      <HeartIcon className='absolute top-[10px] right-[10px] w-8 h-8 px-1 text-gray-500 bg-gray-300/80 rounded-full' />
-      <GiftIcon className='absolute top-[50px] right-[10px] w-8 h-8 px-1 text-violet-700/80 bg-violet-700/20 rounded-full' />
+      <HeartIcon className='absolute top-[10px] right-[10px] md:w-8 w-6 md:h-8 h-6 px-1 text-gray-500 bg-gray-300/80 rounded-full' />
+      <GiftIcon className='absolute md:top-[50px] top-[40px] right-[10px] md:w-8 w-6 md:h-8 h-6 px-1 text-violet-700/80 bg-violet-700/20 rounded-full' />
       <Link to={`/details/${item.id}`}>
         <img className="sm:p-4 p-2 rounded-t-lg" src="/haohao.png" alt="product image" />
       </Link>
@@ -73,8 +70,8 @@ export const Product = (props) => {
           <p className="md:text-lg text-md font-semibold text-gray-700 ">{item.name.length > 20 ? item.name.slice(0, 20) + '...' : item.name}</p>
         </Link>
         <div className="price flex justify-between">
-          <p className="md:text-2xl text-lg tracking-wide font-semibold text-red-600">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)}</p>
-          {item.priceCurr != 0 && <p className="md:text-xl text-md tracking-wide font-semibold text-gray-400 line-through">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.priceCurr)}</p>}
+          <p className="md:text-xl text-base tracking-wide font-semibold text-red-600">{item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}<span className='ml-0.5'>đ</span></p>
+          {item.priceCurr != 0 && <p className="md:text-base text-sm tracking-wide font-semibold text-gray-400 line-through">{item.priceCurr.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}<span className='ml-0.5'>đ</span></p>}
         </div>
         <div className="flex items-center justify-center">
           {(cart.filter(p => p.id === item.id).length == 0) &&
@@ -84,11 +81,11 @@ export const Product = (props) => {
           {cart.filter(p => p.id === item.id).map(p => (
             <div className="flex justify-center items-center mt-2" key={p.id}>
               <button className="border border-slate-400 rounded-full hover:bg-slate-100 duration-200" onClick={p.qty <= 1 ? () => deletes(p.id) : () => decrement(p)}>
-                <MinusIcon className="h-3 w-3 inline md:m-2 m-1.5" />
+                <MinusIcon className="h-3 w-3 inline my-1 mx-1.5" />
               </button>
-              <span className="md:mx-6 mx-2 text-center text-sm md:text-base font-bold text-red-600 bg-rose-100 rounded-full md:px-6 px-4 md:py-1 py-1"> {p.qty} </span>
+              <span className="md:mx-6 mx-2 text-center text-sm md:text-base font-bold text-red-600 bg-rose-100 rounded-full md:px-6 px-4 md:py-1 py-0.5"> {p.qty} </span>
               <button className="border border-gray-200 rounded-full bg-slate-300 hover:bg-slate-400 duration-200" onClick={() => increment(p)}>
-                <PlusIcon className="h-3 w-3 inline md:m-2 m-1.5 text-slate-700" />
+                <PlusIcon className="h-3 w-3 inline my-1 mx-1.5" />
               </button>
             </div>
           ))}
@@ -108,8 +105,8 @@ export const Product = (props) => {
             <img className="w-56 mx-auto" src="/haohao.png" alt="product image" />
             <p className="text-center text-lg font-semibold text-gray-700 ">{item.name.length > 20 ? item.name.slice(0, 20) + '...' : item.name}</p>
             <div className="price flex justify-center items-center gap-4 text-md">
-              <p className="tracking-wide font-semibold text-orange-500">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)}</p>
-              {item.priceCurr != 0 && <p className="tracking-wide font-semibold text-gray-400 line-through">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.priceCurr)}</p>}
+              <p className="tracking-wide font-semibold text-orange-500">{item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}<span className='ml-0.5'>đ</span></p>
+              {item.priceCurr != 0 && <p className="tracking-wide font-semibold text-gray-400 line-through">{item.priceCurr.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}<span className='ml-0.5'>đ</span></p>}
             </div>
             <div className="pt-2 flex justify-between items-center">
               <div className='flex-none'>
@@ -124,8 +121,8 @@ export const Product = (props) => {
               <button className="flex-1 w-56 ml-2 btn bg-orange-600 border border-none text-slate-50 py-1 rounded-lg hover:bg-orange-700 ease-in-out duration-300 font-semibold"
                 onClick={() => addToCart(item)}
               >
-                <p className='text-md font-bold mb-[-5px]'>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}</p>
-                <ShoppingCartIcon className="h-6 w-6 inline pr-2" />
+                <p className='md:text-md text-sm font-bold mb-[-5px]'>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}</p>
+                <ShoppingCartIcon className="md:h-6 h-4 md:w-6 w-4 inline md:pr-2 pr-1" />
                 <span className='text-sm'>Thêm vào giỏ hàng</span>
               </button>
             </div>

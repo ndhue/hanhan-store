@@ -142,16 +142,16 @@ export const NavBar = () => {
                                     </div>
                                     <div className="flex flex-1 items-center justify-between text-sm">
                                       <div className="price">
-                                        <p className="text-xl tracking-wide font-semibold text-orange-500">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}</p>
-                                        {product.priceCurr != 0 && <p className="text-lg tracking-wide font-semibold text-gray-400 line-through">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.priceCurr)}</p>}
+                                        <p className="text-lg tracking-wide font-semibold text-orange-500">{product.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}<span className='ml-0.5'>đ</span></p>
+                                        {product.price && product.price != 0 && <p className="text-md tracking-wide font-semibold text-gray-400 line-through">{product.priceCurr && product.priceCurr.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}<span className='ml-0.5'>đ</span></p>}
                                       </div>
                                       <div className="flex justify-center items-center mt-2">
                                         <button className="border border-slate-400 rounded-full hover:bg-slate-100 duration-200" onClick={product.qty <= 1 ? () => deletes(product.id) : () => decrement(product)}>
-                                          <MinusIcon className="h-3 w-3 inline my-1 mx-1.5" />
+                                          <MinusIcon className="h-3 w-3 inline my-1 mx-1" />
                                         </button>
-                                        <span className="mx-2 text-center text-sm font-bold text-red-600 bg-gray-100 rounded-full px-4 py-1"> {product.qty} </span>
+                                        <span className="mx-2 text-center text-[13px] font-bold text-red-600 bg-gray-100 rounded-full px-3 py-0.5"> {product.qty} </span>
                                         <button className="border border-gray-200 rounded-full bg-slate-300 hover:bg-slate-400 duration-200" onClick={() => increment(product)}>
-                                          <PlusIcon className="h-3 w-3 inline my-1 mx-1.5 text-slate-700" />
+                                          <PlusIcon className="h-3 w-3 inline my-1 mx-1 text-slate-700" />
                                         </button>
                                       </div>
                                     </div>
@@ -166,7 +166,7 @@ export const NavBar = () => {
                       <div className="border-t border-gray-200 px-4 py-3 sm:px-6 flex justify-between items-center">
                         <div className='font-bold text-gray-500'>
                           <p>Tổng tiền</p>
-                          <p className='text-3xl text-orange-500'>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}</p>
+                          <p className='text-3xl text-orange-500'>{price && price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}<span className='ml-0.5'>đ</span></p>
                         </div>
                           <Link
                             to="/"
